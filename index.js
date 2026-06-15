@@ -9,7 +9,14 @@ const kandangRoutes = require('./routes/kandang');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// ─── CORS — izinkan semua origin ─────────────────────────────────
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}));
+app.options('*', cors()); // Handle preflight untuk semua route
+
 app.use(express.json());
 
 // ─── Endpoint /health ────────────────────────────────────────────
@@ -67,6 +74,11 @@ app.get('/schema', (req, res) => {
       delete: '/sapi/{id}',
     },
   });
+});
+
+// ─── Root route (untuk test koneksi frontend) ────────────────────
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Peternakan Sapi API is running' });
 });
 
 // ─── Routes ──────────────────────────────────────────────────────
