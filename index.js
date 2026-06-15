@@ -15,7 +15,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
-app.options('*', cors()); // Handle preflight untuk semua route
 
 app.use(express.json());
 
