@@ -1,0 +1,9 @@
+# Exclude git files
+.git/
+
+# Exclude .env (credentials jangan di-upload)
+.env
+
+# Exclude Dockerfile — biarkan Cloud Run pakai buildpacks otomatis
+Dockerfile
+.dockerignore
