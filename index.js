@@ -4,7 +4,7 @@ const cors = require('cors');
 const pool = require('./db');
 
 const sapiRoutes = require('./routes/sapi');
-const kandangRoutes = require('./routes/kandang');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -62,8 +62,7 @@ app.get('/schema', (req, res) => {
       { name: 'jenis_kelamin', label: 'Jenis Kelamin',  type: 'text',   required: true,  showInTable: true  },
       { name: 'berat_badan',   label: 'Berat Badan (kg)',type: 'number', required: false, showInTable: true  },
       { name: 'status',        label: 'Status',         type: 'text',   required: false, showInTable: true  },
-      { name: 'id_kandang',    label: 'ID Kandang',     type: 'number', required: false, showInTable: false },
-      { name: 'keterangan',    label: 'Keterangan',     type: 'text',   required: false, showInTable: false },
+      { name: 'keterangan',    label: 'Keterangan',     type: 'text',   required: false, showInTable: true  },
     ],
     endpoints: {
       list:   '/sapi',
@@ -82,7 +81,7 @@ app.get('/', (req, res) => {
 
 // ─── Routes ──────────────────────────────────────────────────────
 app.use('/sapi', sapiRoutes);
-app.use('/kandang', kandangRoutes);
+
 
 // ─── Start Server ────────────────────────────────────────────────
 app.listen(PORT, () => {
